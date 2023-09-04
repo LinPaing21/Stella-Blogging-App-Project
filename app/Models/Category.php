@@ -10,8 +10,6 @@ class Category extends Model
 {
     use HasFactory;
 
-
-
     /**
      * Get all of the articles for the Category
      *

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Editing</title>
+    <style>
+        .comment-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.comment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.edit-button {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.editing input {
+    display: block;
+}
+
+.editing p {
+    display: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="comment-container">
+        <div class="comment">
+            <p>This is a sample comment.</p>
+            <button class="edit-button">Edit</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const comments = document.querySelectorAll('.comment');
+
+    comments.forEach(comment => {
+        const editButton = comment.querySelector('.edit-button');
+        const commentText = comment.querySelector('p');
+        let input;
+
+        editButton.addEventListener('click', () => {
+            comment.classList.add('editing');
+            commentText.style.display = 'none';
+            input = document.createElement('input');
+            input.value = commentText.textContent;
+            comment.appendChild(input);
+            input.focus();
+        });
+
+        comment.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                saveComment(comment, input);
+            }
+        });
+
+        function saveComment(comment, input) {
+            const editedText = input.value;
+            commentText.textContent = editedText;
+            comment.removeChild(input);
+            commentText.style.display = 'block';
+            comment.classList.remove('editing');
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

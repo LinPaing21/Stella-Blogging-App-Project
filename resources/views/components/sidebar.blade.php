@@ -1,6 +1,6 @@
-<nav class="col-md-3 mt-2 d-md-block p-2 bg-white rounded" style="position: sticky; height: 500px; top: 5rem; align-self: flex-start; overflow-y: scroll;">
+<nav class="col-md-3 mt-5 d-md-block p-2 rounded">
     <!-- Sidebar content here -->
-    <ul class="nav flex-column">
+    <ul class="nav flex-column bg-white p-3">
         <li class="nav-item">
             <form method="GET" action="/" class="form-group input-group">
                 @if (request('category'))
@@ -9,7 +9,7 @@
                 @if (request('author'))
                     <input type="hidden" name="author" value="{{ request('author') }}">
                 @endif
-                <input type="text" class="form-control" name="search" placeholder="Search" value="{{ request('search') }}">
+                <input type="text" class="form-control" name="search" placeholder="Search" value="{{ request('search') }}" style="background-color: #fff;">
                 <button class="btn btn-outline-secondary" type="submit"><span class="fa fa-search"></span></button>
             </form>
         </li>

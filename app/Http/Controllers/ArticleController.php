@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class ArticleController extends Controller
 {
@@ -24,25 +26,62 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        // dd($article);
+        $article->body = "<p>" . implode("</p><p>", explode("\r\n", $article->body)) . "</p>";
         return view('articles.show', [
             "article" => $article,
         ]);
     }
 
-    public function category(Category $category)
+    public function create()
     {
-        // dd($category->articles);
-        return view('articles.index', [
-            "articles" => $category->articles->load(['category', 'user']),
+        return view('articles.create');
+    }
+
+    public function store()
+    {
+        $data = $this->validateArticle();
+
+        $data['user_id'] = auth()->user()->id;
+        $data['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        Article::create($data);
+        return redirect('/')->with('success', 'You successfully created an article');
+    }
+
+    public function edit(Article $article)
+    {
+        return view('articles.edit', [
+            'article' => $article,
         ]);
     }
 
-    public function user(User $user)
+    public function update(Article $article)
     {
-        // dd($user);
-        return view('articles.index', [
-            "articles" => $user->articles->load(['category', 'user']),
+        $data = $this->validateArticle($article);
+        if ($data->thumbnail ?? false) {
+            $data['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        }
+
+        $article->update($data);
+        return redirect('/')->with('success', 'You successfully updated an article');
+    }
+
+    public function destroy(Article $article) {
+        $article->delete();
+
+        return redirect('/')->with('success', 'Article successfully deleted.');
+    }
+
+    protected function validateArticle(?Article $article = null)
+    {
+        $article ??= new Article();
+
+        return request()->validate([
+            'title' => 'required',
+            'thumbnail' => $article->exists  ? ['image'] : ['required', 'image'],
+            'slug' => ['required', Rule::unique('articles', 'slug')->ignore($article)],
+            'excerpt' => 'required',
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
         ]);
     }
 }

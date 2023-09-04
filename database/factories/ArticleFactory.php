@@ -17,12 +17,12 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            "user_id" => rand(1, 10),
+            "user_id" => rand(1, 8),
             "category_id" => rand(1, 3),
             "slug" => $this->faker->slug(2),
             "title" => $this->faker->sentence,
-            "excerpt" => $this->faker->paragraph(2),
-            "body" => $this->faker->paragraph(6),
+            "excerpt" => implode(' ', $this->faker->sentences(2)),
+            "body" => implode("\r\n", $this->faker->paragraphs(6)),
         ];
     }
 }
