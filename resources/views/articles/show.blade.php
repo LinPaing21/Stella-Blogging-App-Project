@@ -9,7 +9,7 @@
             <p class="lead"><a href="/" class="text-decoration-none mb-3">&larr; Go back to home page</a></p>
             <div class="card mb-4 p-0 bg-white shadow">
                 <div class="card-header p-0">
-                    <img src="{{ ($article->thumbnail)? asset('storage/' . $article->thumbnail) : asset('storage/thumbnails/default_photo.jpg') }}" class="card-img-top w-100" alt="Content Image" height="350px">
+                    <img src="{{ ($article->thumbnail)? asset('storage/' . $article->thumbnail) : asset('default_photo.jpg') }}" class="card-img-top w-100" alt="Content Image" height="350px">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title d-flex justify-content-between">
