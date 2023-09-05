@@ -37,7 +37,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="">Thumbnail</label>
-                    <img src="{{ ($article->thumbnail)? asset('storage/' . $article->thumbnail) : asset('storage/thumbnails/default_photo.jpg') }}" class="rounded d-block mb-1" alt="Content Image" width="150px" height="100px">
+                    <img src="{{ ($article->thumbnail)? asset('storage/' . $article->thumbnail) : asset('default_photo.jpg') }}" class="rounded d-block mb-1" alt="Content Image" width="150px" height="100px">
                     <input type="file" name="thumbnail" class="form-control" value="{{ old('thumbnail') }}">
                     @error('thumbnail')
                         <span class="text-danger" role="alert">
