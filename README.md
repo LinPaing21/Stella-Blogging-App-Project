@@ -6,6 +6,7 @@ First clone or download this repository, install the dependencies, and setup you
 
 ```
 git clone https://github.com/LinPaing21/Stella-Blogging-App-Project.git
+cd Stella-Blogging-App-Project
 composer install
 cp .env.example .env
 php artisan key:generate
