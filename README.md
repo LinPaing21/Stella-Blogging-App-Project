@@ -8,7 +8,9 @@ First clone or download this repository, install the dependencies, and setup you
 git clone https://github.com/LinPaing21/Stella-Blogging-App-Project.git
 composer install
 cp .env.example .env
+php artisan key:generate
 ```
+
 In .env, config mail section with your mail account.
 
 To work password reset function, you need to use actual email when you register.
