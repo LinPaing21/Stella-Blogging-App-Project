@@ -57,7 +57,7 @@ class ArticleController extends Controller
     public function update(Article $article)
     {
         $data = $this->validateArticle($article);
-        if ($data->thumbnail ?? false) {
+        if ($data['thumbnail'] ?? false) {
             $data['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
 
