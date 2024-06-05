@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    @livewireStyles
+@endsection
+
 @section('title')
     Detail Page
 @endsection
@@ -42,35 +46,11 @@
                 </div>
             </div>
 
-            @auth
-                <form action="/articles/{{ $article->slug }}/comments" method="POST" class="border rounded bg-white">
-                    @csrf
-                    <div class="mb-2 row px-3 pt-3">
-                        <div class="col-1">
-                            <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}" alt="" width="50" height="50" class="rounded">
-                        </div>
-                        <div class="col-11">
-                        <textarea name="body" id="addComment" rows="2" class="form-control bg-white" placeholder="Write a comment..." required></textarea>
-                        @error('body')
-                            <span class="text-danger" role="alert">
-                                *<small>{{ $message }}</small>
-                            </span>
-                        @enderror
-                        <div class="float-end mt-2">
-                                <button type="button" onclick="clearCommentValue()" class="btn btn-sm btn-outline-secondary rounded-pill">Cancel</button>
-                                <button type="submit" class="btn btn-sm btn-outline-primary rounded-pill">Comment</button>
-                        </div>
-                        </div>
-                    </div>
-                </form>
-            @else
-                <p class="text-center">&#8226; <a href="/login">Login</a> or <a href="/register">Register</a> to participate in comment section.</p>
-            @endauth
-
-            <x-comments :article="$article"/>
+            @livewire('comments', ['article' => $article])
         </main>
 @endsection
 
 @section('script')
+    @livewireScripts
     <script src="{{ asset('js/comment.js') }}"></script>
 @endsection

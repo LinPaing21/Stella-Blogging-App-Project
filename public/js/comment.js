@@ -1,5 +1,5 @@
-       // Function to clear the comment value
-       function clearCommentValue() {
+// Function to clear the comment value
+    function clearCommentValue() {
         var commentBody = document.getElementById("addComment");
         commentBody.value = "";
     }
@@ -16,6 +16,7 @@
         textarea.value = commentText.textContent;
 
         var attr_arr = {
+            'wire:model.lazy': "body",
             name: 'body',
             rows: '2',
             id: `form-id${id}`,
@@ -38,6 +39,7 @@
         var EditComment = document.getElementById(`edit-comment${id}`);
         var Btn = document.getElementById(`btns${id}`);
         var confirmBtn = document.getElementById(`confirm-btn${id}`);
+        let textarea = document.getElementById(`form-id${id}`);
         EditComment.removeChild(textarea)
         if (document.getElementById('alert-text')) {
            EditComment.removeChild(small)
@@ -50,15 +52,16 @@
     // validation
     function validateValue(id) {
         var EditComment = document.getElementById(`edit-comment${id}`);
-        if (textarea.value) {
-            EditComment.submit()
+
+        if (document.getElementById(`form-id${id}`).value) {
+            Livewire.emit('updateComment', id, document.getElementById(`form-id${id}`).value);
         }else {
             if (!document.getElementById('alert-text')) {
                 small = document.createElement('small');
-            small.classList.add('text-danger')
-            small.setAttribute('id', 'alert-text')
-            small.innerText = "* Comment Body is Required!"
-            EditComment.insertBefore(small, textarea.nextSibling)
+                small.classList.add('text-danger')
+                small.setAttribute('id', 'alert-text')
+                small.innerText = "* Comment Body is Required!"
+                EditComment.insertBefore(small, textarea.nextSibling)
             }
         }
     }

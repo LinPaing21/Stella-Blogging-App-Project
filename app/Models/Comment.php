@@ -13,7 +13,7 @@ class Comment extends Model
 
     protected $guarded = [];
 
-    protected $with = ['user'];
+    protected $with = ['user:id,name'];
     /**
      * Get the user that owns the Comment
      *
