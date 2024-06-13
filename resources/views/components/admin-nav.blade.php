@@ -1,4 +1,4 @@
-<aside class="col-2 position-fixed my-3">
+<aside class="col-2 position-fixed my-3 w3xl">
     <nav class="pe-3">
         <div class="list-group text-center text-lg-start">
             <span class="list-group-item disabled d-none d-lg-block">

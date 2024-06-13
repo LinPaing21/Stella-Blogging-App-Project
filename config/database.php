@@ -17,6 +17,7 @@ return [
 
     'default' => env('DB_CONNECTION', 'mysql'),
 
+    'allow_disabled_pk' => env('ALLOW_DISABLED_PK', false),
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -72,7 +73,10 @@ return [
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
+            'collation' => 'utf8_general_ci',
             'prefix' => '',
+            'strict' => true,
+            'engine' => null,
             'prefix_indexes' => true,
             'schema' => 'public',
             'sslmode' => 'prefer',

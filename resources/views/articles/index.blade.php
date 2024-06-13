@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Home Page
+    Home
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
                 @foreach ($articles as $article)
                     <div class="col-12 col-lg-5 card ms-lg-3 mb-4 p-0 bg-white">
                         <div class="card-header p-0">
-                            <img src="{{ ($article->thumbnail)? asset('storage/' . $article->thumbnail) : asset('default_photo.jpg') }}"  class="card-img-top w-100" alt="Content Image" height="200px">
+                            <img src="{{ ($article->thumbnail)? asset('storage/' . $article->thumbnail) : asset('images/default_photo.jpg') }}"  class="card-img-top w-100" alt="Content Image" height="200px">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $article->title }}</h5>

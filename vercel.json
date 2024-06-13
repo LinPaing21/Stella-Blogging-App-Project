@@ -7,15 +7,19 @@
     },
     "routes": [
         {
+            "src": "/(css|js|images)/(.*)",
+            "dest": "/public/$1/$2"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
     ],
-    "outputDirectory": "public/build",
+    "outputDirectory": "public",
     "env": {
         "APP_NAME": "Stella",
         "APP_ENV": "production",
-        "APP_KEY":"base64:6J7Z46+XGGw2UU5I3iP2+L9k0RidwYbjlziJFrtYkww=",
+        "APP_KEY": "base64:6J7Z46+XGGw2UU5I3iP2+L9k0RidwYbjlziJFrtYkww=",
         "APP_DEBUG": "false",
         "APP_URL": "https://stella.vercel.app",
         "VERCEL_DEMO_MODE": "true",

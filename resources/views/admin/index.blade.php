@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Dashboard
+@endsection
+
 @section('css')
     <style>
         .sticky-sidebar {
@@ -7,6 +11,13 @@
             position: sticky;
             top: 0;
         }
+
+        @media screen and (min-width: 1580px) {
+            .w3xl {
+                width: 250px !important;
+            }
+        }
+
     </style>
 @endsection
 

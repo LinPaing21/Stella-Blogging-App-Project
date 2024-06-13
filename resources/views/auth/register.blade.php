@@ -1,37 +1,11 @@
 @extends('layouts.app')
 
-{{-- @section('css')
-<style>
-    /* Custom styles */
-    .logo-section {
-        background-color: #343a40;
-        color: #FFF;
-        padding: 30px 0;
-    }
+@section('title')
+    Register
+@endsection
 
-    .logo {
-        font-size: 36px;
-        font-weight: bold;
-        letter-spacing: 2px;
-    }
-
-    .slogan {
-        font-size: 18px;
-        opacity: 0.8;
-    }
-</style>
-@endsection --}}
 @section('content')
-{{-- <div class="logo-section text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <span class="logo">Your Logo</span>
-                <p class="slogan">Bringing Ideas to Life</p>
-            </div>
-        </div>
-    </div>
-</div> --}}
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">

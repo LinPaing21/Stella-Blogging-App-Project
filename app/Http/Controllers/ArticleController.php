@@ -42,7 +42,13 @@ class ArticleController extends Controller
         $data = $this->validateArticle();
 
         $data['user_id'] = auth()->user()->id;
-        $data['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        if ($data['thumbnail'] ?? false) {
+            try {
+                $data['thumbnail'] = request()->file('thumbnail')->store('thumbnails', 'public');
+            } catch (\Throwable $th) {
+                $data['thumbnail'] = null;
+            }
+        }
         Article::create($data);
         return redirect('/')->with('success', 'You successfully created an article');
     }
@@ -58,7 +64,11 @@ class ArticleController extends Controller
     {
         $data = $this->validateArticle($article);
         if ($data['thumbnail'] ?? false) {
-            $data['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+            try {
+                $data['thumbnail'] = request()->file('thumbnail')->store('thumbnails', 'public');
+            } catch (\Throwable $th) {
+                $data['thumbnail'] = null;
+            }
         }
 
         $article->update($data);
@@ -77,7 +87,7 @@ class ArticleController extends Controller
 
         return request()->validate([
             'title' => 'required',
-            'thumbnail' => $article->exists  ? ['image'] : ['required', 'image'],
+            'thumbnail' => ['image'],
             'slug' => ['required', Rule::unique('articles', 'slug')->ignore($article)],
             'excerpt' => 'required',
             'body' => 'required',

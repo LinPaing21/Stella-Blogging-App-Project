@@ -18,7 +18,9 @@
                         <button type="button" onclick="clearCommentValue()"
                             class="btn btn-sm btn-outline-secondary rounded-pill">Cancel</button>
                         <button wire:click.prevent="addComment()"
-                            class="btn btn-sm btn-outline-primary rounded-pill">Comment</button>
+                            class="btn btn-sm btn-outline-primary rounded-pill">
+                            <span>Comment</span><span wire:loading wire:target="addComment">ing...</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -50,7 +52,10 @@
                                 <button type="button" onclick="cancelInput({{ $comment->id }})"
                                     class="btn btn-sm btn-outline-secondary rounded-pill">Cancel</button>
                                 <button type="button" onclick="validateValue({{ $comment->id }})"
-                                    class="btn btn-sm btn-outline-primary rounded-pill">Save</button>
+                                    class="btn btn-sm btn-outline-primary rounded-pill">
+                                    <span wire:loading.remove>Save</span>
+                                    <span wire:loading>Saving...</span>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -75,7 +80,8 @@
                                         <li>
                                             <button class="dropdown-item"
                                                 wire:click="deleteComment({{ $comment }})">
-                                                <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                <span>Delete</span><span wire:loading wire:target="deleteComment">ing...</span>
                                             </button>
                                         </li>
                                     @endif
